@@ -55,11 +55,14 @@ li.dataline:nth-child(odd) {
 
 .dataline span:first-child {
     float: left;
+    width: 50%;
+    text-align: right;
 }
-
 .dataline span:nth-child(2) {
-    float:right;
+    float: right;
     color: #aaafdb;
+    width: 44%;
+    text-align: left;
 }
 .dataline {
     position: relative;
@@ -68,10 +71,17 @@ li.dataline:nth-child(odd) {
 }
 .dataline button {
     position: absolute;
-    left: -25px;
+    left: 7px;
     background:black;
     border:none;
     color: #FFF;
+}
+li.dataline button {
+    display: none;
+}
+
+li.dataline:hover button {
+    display: block;
 }
 
 
