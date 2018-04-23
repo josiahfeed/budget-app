@@ -1,0 +1,108 @@
+body {background:#12141e;}
+.budget-app {
+  text-align: center;
+}
+.main {}
+.box-container{
+	display:inline-block;
+
+}
+.box{
+	margin: 20px;
+    padding: 20px;
+
+}
+.box-title{
+
+	padding: 10px;
+	text-transform: uppercase;
+    font-weight: bold;
+    font-size: 200%;
+
+	background: #2d304b;
+	background: -moz-linear-gradient(top,  #2d304b 0%, #161826 100%);
+	background: -webkit-linear-gradient(top,  #2d304b 0%,#161826 100%);
+	background: linear-gradient(to bottom,  #2d304b 0%,#161826 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2d304b', endColorstr='#161826',GradientType=0 );
+
+}
+.box-title h1 {
+  text-shadow: 0px 0px 1px #74799d;
+  margin: 0 auto;
+}
+.box-income{
+	 margin-right: 15px;
+}
+.box-outcome{}
+
+ul {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0px;
+}
+
+li.dataline {
+    background: #1f2134;
+    padding: 10px;
+}
+li.dataline:nth-child(odd) {
+    background: #2a2c3e;
+}
+.dataline span {
+    color: #6f74a1;
+    text-shadow: 1px 1px #000;
+}
+
+.dataline span:first-child {
+    float: left;
+}
+
+.dataline span:nth-child(2) {
+    float:right;
+    color: #aaafdb;
+}
+.dataline {
+    position: relative;
+    height:15px;
+    display:block;
+}
+.dataline button {
+    position: absolute;
+    left: -25px;
+    background:black;
+    border:none;
+    color: #FFF;
+}
+
+
+
+
+
+
+
+
+
+.app-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.app-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.app-title {
+  font-size: 1.5em;
+}
+
+.app-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
