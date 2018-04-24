@@ -1,13 +1,13 @@
 // This is just some sample data so you don't have to think of your own!
 const outcome = {
   budget1: {
-    name: 'Dealer.com',
+    name: '401k',
     amount: 5818033,
     status: 'available'
   },
 
    budget2: {
-    name: 'AirBnB',
+    name: 'Utilities',
     amount: 39105,
     status: 'available'
   },

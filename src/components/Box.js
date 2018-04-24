@@ -5,6 +5,20 @@ class Box extends React.Component {
 	constructor() {
 		super();
 		this.renderDataline = this.renderDataline.bind(this);
+		this.createItem = this.createItem.bind(this);
+
+	}
+
+	createItem(event) {
+		event.preventDefault();
+		console.log('Gonna make some money! 💵');
+		const item = {
+			name: this.name.value,
+			amount: this.amount.value,
+			status: 'available',
+		}
+		this.props.addDataline(item);
+		this.itemForm.reset();
 	}
 
 	renderDataline(key) {
@@ -18,9 +32,11 @@ class Box extends React.Component {
 		)
 	}
 
+
 	render() {
 	  return(
 		  <div className={'box-container box-' + this.props.cstKind}>
+
 			<div className='box'>
 				<div className='box-title'>
 					<h1>{this.props.source}</h1>
@@ -31,13 +47,20 @@ class Box extends React.Component {
 					</ul>
 				</div>
 			</div>
-			<div className='box-menu'>
-				<div className='nav'></div>
-			</div>
-			<div className='box-total'>
-				<div className='total-title'></div>
-				<div className='total-value'></div>
-			</div>
+				<div className='box-menu'>
+					<div className='nav'>
+						<form ref={(input) => this.itemForm = input} className="item-edit" onSubmit={(e) => this.createItem(e)}>
+							<input ref={(input) => this.name = input} type="text" placeholder="Name" />
+							<input ref={(input) => this.amount = input} type="text" placeholder="Amount" />
+							<button type="submit">+ Add Item</button>
+						</form>
+					</div>
+				</div>
+				<div className='box-total'>
+					<div className='total-title'></div>
+					<div className='total-value'></div>
+				</div>
+
 		  </div>
 	  )
 	}

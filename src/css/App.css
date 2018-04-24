@@ -2,16 +2,40 @@ body {background:#12141e;}
 .budget-app {
   text-align: center;
 }
-.main {}
-.box-container{
-	display:inline-block;
-
+.main {display:flex;}
+.box-container {
+  flex: 1; /* additionally, equal width */
+  padding: 1em;
 }
 .box{
 	margin: 20px;
     padding: 20px;
-
+	height: 80%;
 }
+.box-holder {
+    display: inline-table;
+}
+
+form.item-edit {
+    height: 50px;
+}
+
+form.item-edit input {
+    height: 20px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: white;
+    font-style:italic;
+}
+
+input, select, textarea {
+    font-size: 16px;
+    color: #FFF;
+}
+
+
+
 .box-title{
 
 	padding: 10px;
@@ -71,10 +95,12 @@ li.dataline:nth-child(odd) {
 }
 .dataline button {
     position: absolute;
-    left: 7px;
-    background:black;
-    border:none;
+    left: 0px;
+    border: none;
     color: #FFF;
+    font-size: 24px;
+    background: none;
+    top: 2px;
 }
 li.dataline button {
     display: none;

@@ -19,6 +19,9 @@ class App extends React.Component {
 		this.removeDatalineIn = this.removeDatalineIn.bind(this);
 		this.removeDatalineOut = this.removeDatalineOut.bind(this);
 		this.loadSampleData = this.loadSampleData.bind(this);
+		this.addDatalineIn = this.addDatalineIn.bind(this);
+		this.addDatalineOut = this.addDatalineOut.bind(this);
+		this.checkFlow = this.checkFlow.bind(this);
 
 		// getinitialState
 		this.state= {
@@ -42,8 +45,24 @@ class App extends React.Component {
 
 	}
 
-	addDataline() {
+	addDatalineIn(item) {
+	    // update our state
+	    const budgetIn = {...this.state.budgetIn};
+	    // add in our new item
+	    const timestamp = Date.now();
+	    budgetIn[`budget-${timestamp}`] = item;
+	    // set state
+	    this.setState({ budgetIn });
+	}
 
+	addDatalineOut(item) {
+	    // update our state
+	    const budgetOut = {...this.state.budgetOut};
+	    // add in our new item
+	    const timestamp = Date.now();
+	    budgetOut[`budget-${timestamp}`] = item;
+	    // set state
+	    this.setState({ budgetOut });
 	}
 
 	removeDatalineIn(key) {
@@ -65,14 +84,38 @@ class App extends React.Component {
 		});
 	}
 
+	checkFlow(e){
+		if(e.income === true){
+			return true
+			console.log('🙂')
+		}else{
+			return false
+			console.log('🙁')
+
+		}
+	}
 
 
   render() {
     return (
       <div className="budget-app">
      	 <div className="main">
-     	 	<BudgetBox key={1} source="Income" budget={this.state.budgetIn} removeDataline={this.removeDatalineIn} />
-     	 	<BudgetBox key={2} source="Outcome" budget={this.state.budgetOut} removeDataline={this.removeDatalineOut} />
+     	 	<BudgetBox
+     	 		key={1}
+     	 		source="Income"
+     	 		flow={this.checkFlow}
+     	 		budget={this.state.budgetIn}
+     	 		addDataline={this.addDatalineIn}
+     	 		removeDataline={this.removeDatalineIn}
+     	 	/>
+     	 	<BudgetBox
+     	 		key={2}
+     	 		source="Outcome"
+     	 		flow={this.checkFlow}
+     	 		budget={this.state.budgetOut}
+     	 		addDataline={this.addDatalineOut}
+     	 		removeDataline={this.removeDatalineOut}
+     	 	/>
      	 </div>
      	 <div className="footer-total">
      	 	<button onClick={this.loadSampleData}>Load Fake Data</button>
