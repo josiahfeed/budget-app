@@ -2,67 +2,67 @@
 const outcome = {
   budget1: {
     name: '401k',
-    amount: 5818033,
+    amount: 100,
     status: 'available'
   },
 
    budget2: {
     name: 'Utilities',
-    amount: 39105,
+    amount: 20,
     status: 'available'
   },
 
     budget3: {
     name: 'Netflix',
-    amount: 51038,
+    amount: 10,
     status: 'available'
   },
 
     budget4: {
     name: 'Car Payment',
-    amount: 391885,
+    amount: 300,
     status: 'available'
   },
 
     budget5: {
     name: 'Rent',
-    amount: 6849302,
+    amount: 500,
     status: 'available'
   },
 
     budget6: {
     name: 'Cell Phone',
-    amount: 10538,
+    amount: 10,
     status: 'available'
   },
 
     budget7: {
     name: 'Savings',
-    amount: 25035,
+    amount: 10,
     status: 'available'
   },
 
     budget8: {
     name: 'Food',
-    amount: 500000,
+    amount: 10,
     status: 'available'
   },
 
     budget9: {
     name: 'Other',
-    amount: 5034,
+    amount: 10,
     status: 'available'
   },
 
     budget10: {
     name: 'Misc',
-    amount: 524,
+    amount: 10,
     status: 'available'
   },
 
     budget11: {
     name: 'Gum',
-    amount: 724,
+    amount: 10,
     status: 'available'
   }
 };

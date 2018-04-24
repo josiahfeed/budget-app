@@ -6,18 +6,23 @@ class Box extends React.Component {
 		super();
 		this.renderDataline = this.renderDataline.bind(this);
 		this.createItem = this.createItem.bind(this);
-
 	}
 
-	createItem(event) {
+
+
+	createItem(event, source) {
 		event.preventDefault();
-		console.log('Gonna make some money! 💵');
+		if(source === "Income"){
+			console.log('Gonna make some money! 💵');
+		}else{
+			console.log('Not more Bills! 😵');
+		}
 		const item = {
 			name: this.name.value,
 			amount: this.amount.value,
 			status: 'available',
 		}
-		this.props.addDataline(item);
+		this.props.addDataline(item, this.props.source);
 		this.itemForm.reset();
 	}
 
@@ -35,8 +40,7 @@ class Box extends React.Component {
 
 	render() {
 	  return(
-		  <div className={'box-container box-' + this.props.cstKind}>
-
+		  <div className={'box-container box-' + this.props.source}>
 			<div className='box'>
 				<div className='box-title'>
 					<h1>{this.props.source}</h1>
@@ -49,16 +53,16 @@ class Box extends React.Component {
 			</div>
 				<div className='box-menu'>
 					<div className='nav'>
-						<form ref={(input) => this.itemForm = input} className="item-edit" onSubmit={(e) => this.createItem(e)}>
-							<input ref={(input) => this.name = input} type="text" placeholder="Name" />
-							<input ref={(input) => this.amount = input} type="text" placeholder="Amount" />
+						<form ref={(input) => this.itemForm = input} className="item-edit" onSubmit={(e) => this.createItem(e, this.props.source)}>
+							<input ref={(input) => this.name = input} type="text" placeholder="Name" required />
+							<input ref={(input) => this.amount = input} type="text" placeholder="Amount" required />
 							<button type="submit">+ Add Item</button>
 						</form>
 					</div>
 				</div>
 				<div className='box-total'>
-					<div className='total-title'></div>
-					<div className='total-value'></div>
+					<div className='total-title'>Total:</div>
+					<div className='total-value'>Some Total</div>
 				</div>
 
 		  </div>

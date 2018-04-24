@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import logo from '../logo.svg';
 import base from '../base';
-import BudgetBox from './BudgetBox';
+import Income from './Income';
+import Outcome from './Outcome';
 import sampleIncome from '../sample-income';
 import sampleOutcome from '../sample-outcome';
 import '../css/App.css';
@@ -21,12 +22,17 @@ class App extends React.Component {
 		this.loadSampleData = this.loadSampleData.bind(this);
 		this.addDatalineIn = this.addDatalineIn.bind(this);
 		this.addDatalineOut = this.addDatalineOut.bind(this);
+		this.addData = this.addData.bind(this);
 		this.checkFlow = this.checkFlow.bind(this);
+		this.getTotal = this.getTotal.bind(this);
+		this.getTotalFooter = this.getTotalFooter.bind(this);
 
 		// getinitialState
 		this.state= {
 			budgetIn: {},
-			budgetOut: {}
+			budgetOut: {},
+			bIa: 0,
+			bOa: 0
 		};
 
 	}
@@ -45,6 +51,52 @@ class App extends React.Component {
 
 	}
 
+	updateAmount(){
+
+	}
+
+	getTotal(budget,source){
+		let addUpAmount = 0;
+
+		for (let key in budget) {
+			addUpAmount += parseInt(budget[key].amount);
+		}
+
+		if(source === "Income"){
+			this.setState({
+			    bIa: addUpAmount
+			}, function () {
+			    console.log("Here is Income amount ", this.state.bIa);
+			    this.getTotalFooter()
+			});
+		}else{
+			this.setState({
+			    bOa: addUpAmount
+			}, function () {
+			    console.log("Here is Income amount ", this.state.bOa);
+			    this.getTotalFooter()
+			});
+		}
+
+	}
+
+	addData(item, source) {
+		const timestamp = Date.now();
+		if(source === "Income"){
+			const budgetIn = {...this.state.budgetIn};
+			budgetIn[`budget-${timestamp}`] = item;
+			this.setState({ budgetIn });
+			this.getTotal(budgetIn,"Income");
+		}else{
+			const budgetOut = {...this.state.budgetOut};
+			budgetOut[`budget-${timestamp}`] = item;
+			this.setState({ budgetOut });
+			this.getTotal(budgetOut,"Outcome");
+		}
+
+	}
+
+
 	addDatalineIn(item) {
 	    // update our state
 	    const budgetIn = {...this.state.budgetIn};
@@ -52,7 +104,11 @@ class App extends React.Component {
 	    const timestamp = Date.now();
 	    budgetIn[`budget-${timestamp}`] = item;
 	    // set state
-	    this.setState({ budgetIn });
+	    this.setState({
+	    	budgetIn
+	    }, function () {
+	    	this.getTotalFooter()
+	    });
 	}
 
 	addDatalineOut(item) {
@@ -62,26 +118,44 @@ class App extends React.Component {
 	    const timestamp = Date.now();
 	    budgetOut[`budget-${timestamp}`] = item;
 	    // set state
-	    this.setState({ budgetOut });
+	    this.setState({
+	    	budgetOut
+	    }, function () {
+	    	this.getTotalFooter
+	    });
 	}
 
 	removeDatalineIn(key) {
    		const budgetIn = {...this.state.budgetIn};
 	    delete budgetIn[key];
-	    this.setState({ budgetIn });
+	    this.setState({
+	    	budgetIn
+	    }, function () {
+	    	this.getTotalFooter
+	    });
 	}
 
 	removeDatalineOut(key) {
    		const budgetOut = {...this.state.budgetOut};
 	    delete budgetOut[key];
-	    this.setState({ budgetOut });
+	    this.setState({
+	    	budgetOut
+	    }, function () {
+	    	this.getTotalFooter
+	    });
 	}
 
 	loadSampleData() {
+
 		this.setState({
 			budgetIn: sampleIncome,
 			budgetOut: sampleOutcome
+		}, function () {
+			this.getTotal(this.state.budgetIn,"Income")
+			this.getTotal(this.state.budgetOut,"Outcome")
+			this.getTotalFooter
 		});
+
 	}
 
 	checkFlow(e){
@@ -95,29 +169,38 @@ class App extends React.Component {
 		}
 	}
 
+	getTotalFooter (){
+		let addUpAmount = parseInt(this.state.bIa - this.state.bOa);
+		return addUpAmount;
+	}
 
   render() {
     return (
       <div className="budget-app">
      	 <div className="main">
-     	 	<BudgetBox
+     	 	<Income
      	 		key={1}
      	 		source="Income"
      	 		flow={this.checkFlow}
+     	 		getTotal={this.getTotal}
      	 		budget={this.state.budgetIn}
-     	 		addDataline={this.addDatalineIn}
+     	 		addDataline={this.addData}
      	 		removeDataline={this.removeDatalineIn}
      	 	/>
-     	 	<BudgetBox
+     	 	<Outcome
      	 		key={2}
      	 		source="Outcome"
      	 		flow={this.checkFlow}
+     	 		getTotal={this.getTotal}
      	 		budget={this.state.budgetOut}
-     	 		addDataline={this.addDatalineOut}
+     	 		addDataline={this.addData}
      	 		removeDataline={this.removeDatalineOut}
      	 	/>
      	 </div>
      	 <div className="footer-total">
+     	 	<div className="total-value">
+     	 		Total: {this.getTotalFooter()}
+     	 	</div>
      	 	<button onClick={this.loadSampleData}>Load Fake Data</button>
      	 </div>
       </div>

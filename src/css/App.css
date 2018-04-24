@@ -1,16 +1,33 @@
-body {background:#12141e;}
+body {background:#12141e;color:#FFF;}
+.box-title h1 {color:#000;}
 .budget-app {
   text-align: center;
 }
 .main {display:flex;}
 .box-container {
-  flex: 1; /* additionally, equal width */
+  flex: 1 1 50%; /* additionally, equal width */
   padding: 1em;
+  display: flex;
+  flex-direction: column;
 }
 .box{
-	margin: 20px;
-    padding: 20px;
-	height: 80%;
+    display: flex;
+    flex: 1 1 100%;
+    flex-direction: column;
+
+	background: #1f2134;
+	background: -moz-linear-gradient(left, #1f2134 0%, #3b3f5e 100%);
+	background: -webkit-linear-gradient(left, #1f2134 0%,#3b3f5e 100%);
+	background: linear-gradient(to right, #1f2134 0%,#3b3f5e 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1f2134', endColorstr='#3b3f5e',GradientType=1 );
+}
+
+.box-Outcome .box {
+	background: #3b3f5e;
+	background: -moz-linear-gradient(left,  #3b3f5e 0%, #1f2134 100%);
+	background: -webkit-linear-gradient(left,  #3b3f5e 0%,#1f2134 100%);
+	background: linear-gradient(to right,  #3b3f5e 0%,#1f2134 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3b3f5e', endColorstr='#1f2134',GradientType=1 );
 }
 .box-holder {
     display: inline-table;
@@ -18,6 +35,7 @@ body {background:#12141e;}
 
 form.item-edit {
     height: 50px;
+    position: relative;
 }
 
 form.item-edit input {
@@ -26,7 +44,30 @@ form.item-edit input {
     border: none;
     font-size: 16px;
     color: white;
-    font-style:italic;
+    font-style: italic;
+    background: rgba(250,250,250,0.09);
+    margin-right: 15px;
+    padding: 10px;
+    float:left;
+}
+form.item-edit input:first-child {
+    width: 45%;
+}
+form.item-edit input:nth-child(2) {
+    width: 20%;
+}
+
+.box-menu {
+    margin: 0 20px;
+}
+
+
+.nav button {
+    margin-top: 12px;
+    text-indent: -9999em;
+    border: none;
+    background: url("../img/add.png") no-repeat scroll 0 0 transparent;
+    width: 65px;
 }
 
 input, select, textarea {
@@ -66,11 +107,11 @@ ul {
 }
 
 li.dataline {
-    background: #1f2134;
+    background: none;
     padding: 10px;
 }
 li.dataline:nth-child(odd) {
-    background: #2a2c3e;
+    background: rgba(250,250,250,0.03);
 }
 .dataline span {
     color: #6f74a1;
