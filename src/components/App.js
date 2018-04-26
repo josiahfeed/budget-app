@@ -25,14 +25,15 @@ class App extends React.Component {
 		this.addData = this.addData.bind(this);
 		this.checkFlow = this.checkFlow.bind(this);
 		this.getTotal = this.getTotal.bind(this);
+		this.getTotalInput = this.getTotalInput.bind(this);
 		this.getTotalFooter = this.getTotalFooter.bind(this);
 
 		// getinitialState
 		this.state= {
 			budgetIn: {},
 			budgetOut: {},
-			bIa: 0,
-			bOa: 0
+			totalIncome: 0,
+			totalOutcome: 0
 		};
 
 	}
@@ -55,6 +56,19 @@ class App extends React.Component {
 
 	}
 
+
+	getTotalInput(budget,source){
+		let addUpAmount = 0;
+
+		for (let key in budget) {
+			addUpAmount += parseInt(budget[key].amount);
+		}
+
+		return addUpAmount;
+
+	}
+
+
 	getTotal(budget,source){
 		let addUpAmount = 0;
 
@@ -64,16 +78,16 @@ class App extends React.Component {
 
 		if(source === "Income"){
 			this.setState({
-			    bIa: addUpAmount
+			    totalIncome: addUpAmount
 			}, function () {
-			    console.log("Here is Income amount ", this.state.bIa);
+			    console.log("Here is Income amount ", this.state.totalIncome);
 			    this.getTotalFooter()
 			});
 		}else{
 			this.setState({
-			    bOa: addUpAmount
+			    totalOutcome: addUpAmount
 			}, function () {
-			    console.log("Here is Income amount ", this.state.bOa);
+			    console.log("Here is Outcome amount ", this.state.totalOutcome);
 			    this.getTotalFooter()
 			});
 		}
@@ -127,11 +141,12 @@ class App extends React.Component {
 
 	removeDatalineIn(key) {
    		const budgetIn = {...this.state.budgetIn};
+   		const totalIncome = {...this.state.totalIncome};
 	    delete budgetIn[key];
 	    this.setState({
 	    	budgetIn
 	    }, function () {
-	    	this.getTotalFooter
+	    	this.getTotal(budgetIn,"Income");
 	    });
 	}
 
@@ -141,7 +156,7 @@ class App extends React.Component {
 	    this.setState({
 	    	budgetOut
 	    }, function () {
-	    	this.getTotalFooter
+	    	this.getTotal(budgetOut,"Outcome");
 	    });
 	}
 
@@ -153,7 +168,6 @@ class App extends React.Component {
 		}, function () {
 			this.getTotal(this.state.budgetIn,"Income")
 			this.getTotal(this.state.budgetOut,"Outcome")
-			this.getTotalFooter
 		});
 
 	}
@@ -170,7 +184,7 @@ class App extends React.Component {
 	}
 
 	getTotalFooter (){
-		let addUpAmount = parseInt(this.state.bIa - this.state.bOa);
+		let addUpAmount = parseInt(this.state.totalIncome - this.state.totalOutcome);
 		return addUpAmount;
 	}
 
@@ -183,6 +197,8 @@ class App extends React.Component {
      	 		source="Income"
      	 		flow={this.checkFlow}
      	 		getTotal={this.getTotal}
+     	 		getTotalInput={this.getTotalInput}
+     	 		incomeTotal={this.state.incomeTotal}
      	 		budget={this.state.budgetIn}
      	 		addDataline={this.addData}
      	 		removeDataline={this.removeDatalineIn}
@@ -191,7 +207,9 @@ class App extends React.Component {
      	 		key={2}
      	 		source="Outcome"
      	 		flow={this.checkFlow}
+     	 		outcomeTotal={this.state.outcomeTotal}
      	 		getTotal={this.getTotal}
+     	 		getTotalInput={this.getTotalInput}
      	 		budget={this.state.budgetOut}
      	 		addDataline={this.addData}
      	 		removeDataline={this.removeDatalineOut}
@@ -199,7 +217,7 @@ class App extends React.Component {
      	 </div>
      	 <div className="footer-total">
      	 	<div className="total-value">
-     	 		Total: {this.getTotalFooter()}
+     	 		<input type="text" value={'$'+this.getTotalFooter()+ ' A MONTH LEFT OVER'} readOnly />
      	 	</div>
      	 	<button onClick={this.loadSampleData}>Load Fake Data</button>
      	 </div>

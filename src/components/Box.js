@@ -61,8 +61,7 @@ class Box extends React.Component {
 					</div>
 				</div>
 				<div className='box-total'>
-					<div className='total-title'>Total:</div>
-					<div className='total-value'>Some Total</div>
+					<div className='total-value'><input id={'total-' + this.props.source} type="text" value={this.props.getTotalInput(this.props.budget,this.props.source)} readOnly /></div>
 				</div>
 
 		  </div>

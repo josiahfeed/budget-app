@@ -3,6 +3,8 @@ body {background:#12141e;color:#FFF;}
 .budget-app {
   text-align: center;
 }
+
+input {background:none;border:none;}
 .main {display:flex;}
 .box-container {
   flex: 1 1 50%; /* additionally, equal width */
@@ -31,6 +33,40 @@ body {background:#12141e;color:#FFF;}
 }
 .box-holder {
     display: inline-table;
+}
+
+.total-value input {
+    font-size: 44px;
+    color: #000;
+    width: 84%;
+    text-align: right;
+}
+.footer-total .total-value input {
+
+text-align:center;
+color:#FFF;
+	}
+
+
+.footer-total {
+    width: 93%;
+    margin: 0 auto;
+    text-align: center;
+    padding:20px;
+    background: #292859;
+background: -moz-linear-gradient(left,  #292859 0%, #2e2e36 100%);
+background: -webkit-linear-gradient(left,  #292859 0%,#2e2e36 100%);
+background: linear-gradient(to right,  #292859 0%,#2e2e36 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#292859', endColorstr='#2e2e36',GradientType=1 );
+
+}
+
+.box-total .total-value {
+    background: url("../img/total.png") no-repeat scroll 0 0 transparent;
+    flex: 1 1 100%;
+    display: flex;
+    background-size: 100%;
+    height: 107px;
 }
 
 form.item-edit {
