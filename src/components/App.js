@@ -38,15 +38,32 @@ class App extends React.Component {
 
 	}
 
-	//componentWillMount() {
-	//	this.ref = base.syncState(`${this.props.params.uid}`, {
-	//		context: this,
-	//		state: 'budget'
-	//	});
-	//}
-	//componentWillUnmount(){
-	//	base.removeBinding(this.ref);
-	//}
+	componentWillMount() {
+		this.budgetIn = base.syncState(`budgeIn/`, {
+			context: this,
+			state: 'budgetIn'
+		});
+		this.budgetOut = base.syncState(`budgetOut/`, {
+			context: this,
+			state: 'budgetOut'
+		});
+		this.totalIncome = base.syncState(`totalIncome/`, {
+			context: this,
+			state: 'totalIncome'
+		});
+		this.totalOutcome = base.syncState(`totalOutcome/`, {
+			context: this,
+			state: 'totalOutcome'
+		});
+	}
+
+
+	componentWillUnmount(){
+		base.removeBinding(this.budgetIn);
+		base.removeBinding(this.budgetOut);
+		base.removeBinding(this.totalIncome);
+		base.removeBinding(this.totalOutcome);
+	}
 
 	updateDataline() {
 
@@ -63,6 +80,7 @@ class App extends React.Component {
 		for (let key in budget) {
 			addUpAmount += parseInt(budget[key].amount);
 		}
+
 
 		return addUpAmount;
 
@@ -217,7 +235,7 @@ class App extends React.Component {
      	 </div>
      	 <div className="footer-total">
      	 	<div className="total-value">
-     	 		<input type="text" value={'$'+this.getTotalFooter()+ ' A MONTH LEFT OVER'} readOnly />
+     	 		<input type="text" value={'$'+this.getTotalFooter()+ ' A MONTH LEFT'} readOnly />
      	 	</div>
      	 	<button onClick={this.loadSampleData}>Load Fake Data</button>
      	 </div>

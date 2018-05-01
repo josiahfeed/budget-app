@@ -1,4 +1,9 @@
-body {background:#12141e;color:#FFF;}
+body {background: #26353f;
+background: -moz-linear-gradient(left,  #26353f 0%, #12141e 49%, #1a272d 51%, #332742 83%, #161c26 100%);
+background: -webkit-linear-gradient(left,  #26353f 0%,#12141e 49%,#1a272d 51%,#332742 83%,#161c26 100%);
+background: linear-gradient(to right,  #26353f 0%,#12141e 49%,#1a272d 51%,#332742 83%,#161c26 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#26353f', endColorstr='#161c26',GradientType=1 );
+color:#FFF;}
 .box-title h1 {color:#000;}
 .budget-app {
   text-align: center;
@@ -60,9 +65,19 @@ background: linear-gradient(to right,  #292859 0%,#2e2e36 100%);
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#292859', endColorstr='#2e2e36',GradientType=1 );
 
 }
-
+.total-value input {color:#FFF;}
+.box-total .total-value:after {
+    display: block;
+    content: "TOTAL";
+    position: absolute;
+    left: 10px;
+    top: 40%;
+}
+.box-total {
+    position: relative;
+}
 .box-total .total-value {
-    background: url("../img/total.png") no-repeat scroll 0 0 transparent;
+    background:none;
     flex: 1 1 100%;
     display: flex;
     background-size: 100%;
@@ -85,16 +100,14 @@ form.item-edit input {
     margin-right: 15px;
     padding: 10px;
     float:left;
+    border-right: 3px solid darkgray;
+    border-radius: 6px 0;
 }
 form.item-edit input:first-child {
     width: 45%;
 }
 form.item-edit input:nth-child(2) {
     width: 20%;
-}
-
-.box-menu {
-    margin: 0 20px;
 }
 
 
@@ -104,7 +117,11 @@ form.item-edit input:nth-child(2) {
     border: none;
     background: url("../img/add.png") no-repeat scroll 0 0 transparent;
     width: 65px;
+    height: 29px;
+    cursor: pointer;
+    opacity:0.7;
 }
+.nav button:hover {opacity:1;}
 
 input, select, textarea {
     font-size: 16px;

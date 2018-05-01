@@ -8,8 +8,6 @@ class Box extends React.Component {
 		this.createItem = this.createItem.bind(this);
 	}
 
-
-
 	createItem(event, source) {
 		event.preventDefault();
 		if(source === "Income"){
