@@ -18,7 +18,7 @@
     "re-base": "2.2.0",
     "react": "16.3.2",
     "react-addons-css-transition-group": "15.3.2",
-    "react-dom": "16.3.2",
+    "react-dom": "^16.3.2",
     "react-router": "4.0.0-alpha.4",
     "react-scripts": "1.1.4"
   },
@@ -31,6 +31,18 @@
     "styles:watch": "stylus -u autoprefixer-stylus -w ./src/css/style.styl -o ./src/css/style.css"
   },
   "eslintConfig": {
-    "extends": "./node_modules/react-scripts/.eslintrc"
-  }
+    "extends": "../node_modules/react-scripts/.eslintrc"
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josiahfeed/budget-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/josiahfeed/budget-app/issues"
+  },
+  "homepage": "https://github.com/josiahfeed/budget-app#readme",
+  "description": ""
 }

@@ -39,7 +39,7 @@ class App extends React.Component {
 	}
 
 	componentWillMount() {
-		this.budgetIn = base.syncState(`budgeIn/`, {
+		this.budgetIn = base.syncState(`budgetIn/`, {
 			context: this,
 			state: 'budgetIn'
 		});
